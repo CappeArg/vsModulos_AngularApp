@@ -1,0 +1,70 @@
+<h1>Paciente <small>{{paciente.nombre}} {{paciente.apellido}}</small></h1>
+<hr>
+<div class="row text-end">
+    <div class="col">
+        <button routerLink="/pacientes" class="btn btn-danger m-4">
+            <i class="fa fa-arrow-left"> Regresar</i>
+        </button>
+    </div>
+</div>
+
+<div class="row animate__animated animate__fadeIn faster">
+    <form (ngSubmit)="guardar(f)" #f=ngForm>
+
+        <div class="form-group m-3">
+            <label>Firebase ID</label>
+            <input type="text" class="form-control" placeholder="Firebase ID" disabled='disabled' name="id" [(ngModel)]="paciente.id">
+            <small class="form-text text-muted">Este campo es autogenerado</small>
+        </div>
+
+        <div class="form-group m-3">
+            <label>Nombre</label>
+            <input type="text" class="form-control" placeholder="Nombre" required name="nombre" [(ngModel)]="paciente.nombre">
+        </div>
+
+        <div class="form-group m-3">
+            <label>Apellido</label>
+            <input type="text" class="form-control" placeholder="Apellido" required name="apellido" [(ngModel)]="paciente.apellido">
+        </div>
+
+        <div class="form-group m-3">
+            <label>DNI</label>
+            <input type="text" class="form-control" placeholder="DNI" required name="dni" [(ngModel)]="paciente.dni">
+        </div>
+
+        <div class="form-group m-3">
+            <label>Tipo de Examen</label>
+            <select class="form-control" name="examenes" [(ngModel)]="paciente.examenes">
+                <option value="ingreso">Ingreso</option>
+                <option value="planta">Ingreso a Planta</option>
+                <option value="preventivo">Preventivo</option>
+            </select>
+        </div>
+
+        <div class="form-group m-3">
+            <label>Estado Exámen</label>
+            <br>
+            <button *ngIf="paciente.estadoexamen" class="btn btn-outline-success w-50" type="button" (click)="paciente.estadoexamen=false">
+                <i class="fa fa-smile-wink"> Realizado</i>
+            </button>
+            <button *ngIf="!paciente.estadoexamen" class="btn btn-outline-danger w-50" type="button" (click)="paciente.estadoexamen=true">
+                <i class="fa fa-dizzy"> Pendiente</i>
+            </button>
+
+        </div>
+
+        <hr>
+
+        <div class="form-group text-center mb-4">
+            <button type="submit" class="btn btn-warning w-25">
+            
+                <i class="fa fa-save"></i> Guardar
+                
+            </button>
+        </div>
+
+
+
+    </form>
+
+</div>
